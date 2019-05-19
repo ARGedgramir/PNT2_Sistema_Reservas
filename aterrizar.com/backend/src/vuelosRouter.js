@@ -9,6 +9,7 @@ const baseURI = '/api/vuelos'
 
 router.get('/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getall")
     if (_.isEmpty(req.query)) {
         _handleGetAll(req, res)
     } else {
@@ -24,6 +25,30 @@ async function _handleGetAll(req, res) {
     res.status(err.status).json(err)
     }
 }
+router.get('/Orig/', async (req, res) => {
+    console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getOrig")
+    try{
+        if (_.isEmpty(req.query)) {
+            const resultado = await vuelosDAO.getOrig(req)
+            res.json(resultado)
+        }else   console.log(res.query)
+    }catch(e){
+        return e
+    }
+})
+router.get('/:Dest', async (req, res) => {
+    console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getDest")
+    try{
+        if (_.isEmpty(req.query)) {
+            const resultado = await vuelosDAO.getDest(req)
+            res.json(resultado)
+        }else   console.log(res.query)
+    }catch(e){
+        return e
+    }
+})
 /*
 async function _handleGetWithQS(req, res) {
     try {

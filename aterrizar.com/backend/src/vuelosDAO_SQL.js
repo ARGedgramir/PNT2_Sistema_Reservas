@@ -9,6 +9,24 @@ const getAll = async()=> {
         return e
     }
 }
+const getOrig = async()=> {
+    try{
+        const selectAllQuery = `SELECT * FROM vue_Orig`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e
+    }
+}
+const getDest = async()=> {
+    try{
+        const selectAllQuery = `SELECT * FROM vue_Dest`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e
+    }
+}
 /*
 async function getAll() {
     const selectAllQuery = 'SELECT * FROM vue_orig'
@@ -60,6 +78,8 @@ async function updateByDni(dni, nuevoEstu) {
 */
 module.exports = {
     getAll,
+    getOrig,
+    getDest
 /*    getByAge,
     getByDni,
     add,
