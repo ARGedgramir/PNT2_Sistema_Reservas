@@ -91,7 +91,7 @@ router.post('/', async (req, res) => {
 
         if (esEstudianteInvalido(nuevo))
             throw { status: 400, descripcion: 'el estudiante posee un formato json invalido o faltan datos' }
-
+        
         const estuCreado = await vuelosDAO.add(nuevo)
         res.status(201).json(estuCreado)
     } catch (err) {
