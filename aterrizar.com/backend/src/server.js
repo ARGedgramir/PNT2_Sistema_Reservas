@@ -9,7 +9,7 @@ app.set('json spaces', 4)
 
 app.use('/api/vuelos', vuelosRouter)
 
-const puerto = 8080
+const puerto = 8090
 app.listen(puerto, () => {
     console.log(`servidor inicializado en puerto ${puerto}`)
 })

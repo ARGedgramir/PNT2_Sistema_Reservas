@@ -1,23 +1,34 @@
 <template>
-  <div id="app">
+  <div id="home">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <home  msg="Aterrizar.com"/>
+      <div class="nav">
+        <h1>{{ msg }}</h1>
+        <p>
+        ¿Quien dijo que lo sencillo no seria bueno? 
+        :)
+        </p>
+        <router-link to="/">Home  </router-link>
+        <router-link to="/Busq_Vuelos">Busqueda Vuelos </router-link>
+        <router-link to="/Busq_Reservas">Busqueda Reservas </router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import home from './components/Home.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    home
   }
 }
 </script>
 
 <style>
-#app {
+#home {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
