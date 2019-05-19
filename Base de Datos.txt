@@ -1,0 +1,58 @@
+Base de Datos: aterrizar.com
+Tablas:
+
+- vuelo:
+	+id_vue
+	+aerolinea
+	+orig
+	+orig_aeropuerto
+	+dest
+	+dest_aeropuerto
+	+fecha
+	+escala_aeropuerto?
+
+- vuelo_detalle
+	+id_vue
+	+capacidad
+
+- reserva
+	+id_reserva
+	+id_pasajero
+	+id_vuelo
+
+- pasajeros
+	+id_pasajero
+	+nombre
+	+apellido
+	+DNI
+	+telefono
+	+correo
+	+
+
+- reserva_detalle
+
+
+- vue_origen
+	+id_dest
+	+nombre_dest
+	+aeropuerto_dest
+
+- vue_dest
+	+id_ori
+	+nombre_ori
+	+aeropuerto_ori
+
+-------------------------------------------------------------------------------------
+usuario: Login_aterri
+Password: Pass#0rD
+Base_datos: aterrizar.com
+-------------------------------------------------------------------------------------
+
+CREATE TABLE [dbo].[vue_orig](
+	[id_orig] [int] IDENTITY(1,1) NOT NULL,
+	[nombre_orig] [varchar](250) NOT NULL,
+	[aeropuerto_orig] [varchar](500) NOT NULL
+	)
+	GO
+
+

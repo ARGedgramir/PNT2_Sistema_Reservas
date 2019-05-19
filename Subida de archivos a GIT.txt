@@ -1,0 +1,13 @@
+Como usar GIT:
+
+- Hacer boton derecho sobre el raiz de una carpeta nueva (ej:PNT2_Sistema_Reservas)--> Git Bash Here
+
+- Git status : para ver las diferencias del repositorio local con el que esta en GIT.
+
+- git add . : para agregar los nuevos archivos comit local
+
+- git commit -m "Comentario de que se sube" 
+
+- git push : para subirlo
+
+- git push --force : por si, no entendio que aunque haya algun problema lo queres subir igual jajaja
