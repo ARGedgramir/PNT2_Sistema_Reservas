@@ -18,9 +18,9 @@ const getOrig = async()=> {
         return e
     }
 }
-const getDest = async()=> {
+const getDest = async(req)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vue_Dest`
+        const selectAllQuery = `SELECT * FROM vue_Dest where id_dest='${req.params.vue_orig}'`
         const result = await knex.raw(selectAllQuery)
         return result
     }catch(e){

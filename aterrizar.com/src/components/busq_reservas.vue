@@ -1,5 +1,5 @@
 <template>
-  <div class="Busq_reservas">
+  <div id="app" class="Busq_reservas">
     <h1>Busqueda Reservas</h1>
   </div>
 </template>

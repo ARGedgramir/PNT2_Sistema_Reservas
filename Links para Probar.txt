@@ -6,6 +6,6 @@ http://localhost:8080/busq_reservas
 BackEnd (cd .\aterrizar.com\ y cd backend luego npm start)(desde Postman)
 http://127.0.0.1:8090/api/vuelos
 
-http://127.0.0.1:8090/api/vuelos/Origx
+http://127.0.0.1:8090/api/vuelos/Orig
 
 http://127.0.0.1:8090/api/vuelos/Dest

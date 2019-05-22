@@ -9,38 +9,41 @@ Tablas:
 	+dest
 	+dest_aeropuerto
 	+fecha
-	+escala_aeropuerto?
+	+escala_aeropuerto
+	+disponible
 
 - vuelo_detalle
 	+id_vue
-	+capacidad
+	+duracion
+	+hora_partida
+	+hora_llegada
+	+precio
+	+capacidad_primera
+	+capacidad_economica
 
 - reserva
 	+id_reserva
-	+id_pasajero
-	+id_vuelo
+	+DNI_pasaj
+	+id_vue
+	+fecha
 
 - pasajeros
-	+id_pasajero
+	+DNI_pasaj
 	+nombre
 	+apellido
-	+DNI
 	+telefono
 	+correo
-	+
-
-- reserva_detalle
-
 
 - vue_origen
+	+id_ori
+	+nombre_ori
+	+aeropuerto_ori
+
+- vue_dest
 	+id_dest
 	+nombre_dest
 	+aeropuerto_dest
 
-- vue_dest
-	+id_ori
-	+nombre_ori
-	+aeropuerto_ori
 
 -------------------------------------------------------------------------------------
 usuario: Login_aterri

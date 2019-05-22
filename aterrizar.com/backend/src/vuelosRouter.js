@@ -37,9 +37,23 @@ router.get('/Orig/', async (req, res) => {
         return e
     }
 })
-router.get('/:Dest', async (req, res) => {
+router.get('/Dest/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getDest")
+    //res.send({message: `recibimos ${req.params.vue_orig}`})
+    try{
+        if (_.isEmpty(req.query)) {
+            const resultado = await vuelosDAO.getAll(req)
+            res.json(resultado)
+        }else   console.log(res.query)
+    }catch(e){
+        return e
+    }
+})
+router.get('/Dest/:vue_orig', async (req, res) => {
+    console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getDest")
+    //res.send({message: `recibimos ${req.params.vue_orig}`})
     try{
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getDest(req)

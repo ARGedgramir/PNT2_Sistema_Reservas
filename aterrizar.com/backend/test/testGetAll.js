@@ -15,9 +15,6 @@ async function testGetAll(serverUrl) {
             if (!vuelos[i].hasOwnProperty('nombre')) {
                 console.log("get all: el estudiante recibido no tiene nombre")
                 testOK = false
-            } else if (!vuelos[i].hasOwnProperty('apellido')) {
-                console.log("get all: el estudiante recibido no tiene apellido")
-                testOK = false
             } else if (!vuelos[i].hasOwnProperty('edad')) {
                 console.log("get all: el estudiante recibido no tiene edad")
                 testOK = false
