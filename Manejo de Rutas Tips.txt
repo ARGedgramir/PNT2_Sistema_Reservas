@@ -1,0 +1,51 @@
+router
+HOME
+        <router-link to="/Busq_Vuelos/1">Busqueda Vuelos </router-link>
+Router.js
+
+path:'/busq_reservas:id',
+            name: 'busq_reservas',
+            component: () => import('./components/busq_reservas.vue')
+    },
+
+<template>
+	<h1>${{route.params.id}}</h1>
+</template>
+
+front
+1
+
+-------------------------------------------
+
+this.router.push('/') envia a un componente especifico.
+
+-------------------------------------------
+
+en el export{
+permite recibir parametros del padre
+
+},
+
+
+
+-----------------
+Pagina no encontrada por ejemplo.	
+route {
+path:'*'
+}
+
+_-------------------
+componente.vue
+
+<template>
+<button @click="add()"> sumar al id</button>
+</button>
+
+main.js
+
+  methods:{
+    add(){
+      this.id = this.id++
+    }   
+  }
+}).$mount('#app')

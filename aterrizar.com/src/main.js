@@ -8,13 +8,11 @@ new Vue({
   render: h => h(App),
 
   data:{
-    counter: 0
-
   },
-
   router,
-
   methods:{
-    
+    add(){
+      this.id = this.id++
+    }   
   }
 }).$mount('#app')

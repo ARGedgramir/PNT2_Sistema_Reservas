@@ -27,12 +27,14 @@ const getDest = async(req)=> {
         return e
     }
 }
-/*
-async function getAll() {
-    const selectAllQuery = 'SELECT * FROM vue_orig'
-    const result = await knex.raw(selectAllQuery)
-    return result
-    
+const getvuelo = async(req)=> {
+    try{
+        const selectAllQuery = `SELECT * FROM vuelos where fecha ='${req.params.fecha}' and orig_aeropuerto='${req.params.orig_aeropuerto}' and dest_aeropuerto='${req.params.dest_aeropuerto}'`
+         const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e
+    }
 }
 /*
 async function getByAge(edadMin, edadMax) {
@@ -79,11 +81,6 @@ async function updateByDni(dni, nuevoEstu) {
 module.exports = {
     getAll,
     getOrig,
-    getDest
-/*    getByAge,
-    getByDni,
-    add,
-    deleteByDni,
-    updateByDni
-    */
+    getDest,
+    getvuelo
 }

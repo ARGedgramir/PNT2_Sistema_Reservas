@@ -50,6 +50,23 @@ router.get('/Dest/', async (req, res) => {
         return e
     }
 })
+
+router.get('/vuelos?', async (req, res) => {
+    console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getvuelo")
+
+    try{
+        if (_.isEmpty(req.query)) {
+            console.log('else')
+        }else   {
+            const resultado = await vuelosDAO.getVuelo(req)
+            res.json(resultado)}
+            
+    }catch(e){
+        return e
+    }
+})
+
 router.get('/Dest/:vue_orig', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getDest")

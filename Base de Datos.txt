@@ -17,9 +17,7 @@ Tablas:
 	+duracion
 	+hora_partida
 	+hora_llegada
-	+precio
-	+capacidad_primera
-	+capacidad_economica
+	+precio	
 
 - reserva
 	+id_reserva
@@ -57,5 +55,3 @@ CREATE TABLE [dbo].[vue_orig](
 	[aeropuerto_orig] [varchar](500) NOT NULL
 	)
 	GO
-
-

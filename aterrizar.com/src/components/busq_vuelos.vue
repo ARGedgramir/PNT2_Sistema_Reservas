@@ -1,6 +1,6 @@
 <template>
   <div class="Busq_vuelos">
-    <h1>Buequsda Vuelos</h1>
+    <h1>Buequeda Vuelos</h1>
   </div>
 </template>
 

@@ -3,3 +3,5 @@ Log de errores:
 
 1.a https://til.hashrocket.com/posts/aucwkd8b36-asyncawait-unhandledpromiserejectionwarning
 
+2. Error de login bd
+https://support.microsoft.com/en-us/help/555332/login-failed-for-user-error-message-when-you-log-on-to-sql-server
