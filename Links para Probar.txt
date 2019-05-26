@@ -4,8 +4,15 @@ http://localhost:8080/busq_vuelos
 http://localhost:8080/busq_reservas
 
 BackEnd (cd .\aterrizar.com\ y cd backend luego npm start)(desde Postman)
-http://127.0.0.1:8090/api/vuelos
 
+Listado de Aeropuertos de origen:
 http://127.0.0.1:8090/api/vuelos/Orig
 
+Listado de Aeropuertos de destino:
 http://127.0.0.1:8090/api/vuelos/Dest
+
+Listado de vuelos:
+http://127.0.0.1:8090/api/vuelos/vuelos/all
+
+listado de vuelos con un origen y destino especifico.
+http://127.0.0.1:8090/api/vuelos/vuelos?fecha=2019-06-23&destino=rio%20de%20janeiro&origen=buenos%20aires

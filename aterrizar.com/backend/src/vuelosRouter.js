@@ -40,8 +40,7 @@ router.get('/Orig/', async (req, res) => {
 router.get('/Dest/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getDest")
-    //res.send({message: `recibimos ${req.params.vue_orig}`})
-    try{
+   try{
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getAll(req)
             res.json(resultado)
@@ -51,19 +50,26 @@ router.get('/Dest/', async (req, res) => {
     }
 })
 
-router.get('/vuelos?', async (req, res) => {
+router.get('/vuelos', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvuelo")
-
+    
     try{
-        if (_.isEmpty(req.query)) {
-            console.log('else')
-        }else   {
-            const resultado = await vuelosDAO.getVuelo(req)
-            res.json(resultado)}
-            
+        const resultado = await vuelosDAO.getvuelo(req)
+        res.json(resultado)      
     }catch(e){
         return e
+    }
+})
+router.get('/vuelos/all', async (req, res) => {
+    console.log(`GETTING: ${baseURI}${req.url}`)
+    console.log("Esto es / getvueloall")
+    
+    try{
+        const resultado = await vuelosDAO.getvueloall()
+        res.json(resultado)       
+    }catch(e){
+        res.status(e.status).json(e)
     }
 })
 
@@ -75,6 +81,7 @@ router.get('/Dest/:vue_orig', async (req, res) => {
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getDest(req)
             res.json(resultado)
+            return res
         }else   console.log(res.query)
     }catch(e){
         return e

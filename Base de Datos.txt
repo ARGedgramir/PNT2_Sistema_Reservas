@@ -24,6 +24,7 @@ Tablas:
 	+DNI_pasaj
 	+id_vue
 	+fecha
+	+cant_pax
 
 - pasajeros
 	+DNI_pasaj

@@ -29,8 +29,17 @@ const getDest = async(req)=> {
 }
 const getvuelo = async(req)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vuelos where fecha ='${req.params.fecha}' and orig_aeropuerto='${req.params.orig_aeropuerto}' and dest_aeropuerto='${req.params.dest_aeropuerto}'`
-         const result = await knex.raw(selectAllQuery)
+        const selectAllQuery = `SELECT * FROM vuelos where orig='${req.query.origen}' and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e
+    }
+}
+const getvueloall = async()=> {
+    try{
+        const selectAllQuery = `SELECT * FROM vuelos`
+        const result = await knex.raw(selectAllQuery)
         return result
     }catch(e){
         return e
@@ -82,5 +91,6 @@ module.exports = {
     getAll,
     getOrig,
     getDest,
-    getvuelo
+    getvuelo,
+    getvueloall
 }
