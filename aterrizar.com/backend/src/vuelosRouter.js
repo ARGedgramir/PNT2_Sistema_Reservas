@@ -53,23 +53,22 @@ router.get('/Dest/', async (req, res) => {
 router.get('/vuelos', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvuelo")
-    
     try{
         const resultado = await vuelosDAO.getvuelo(req)
-        res.json(resultado)      
+        res.json(resultado) 
     }catch(e){
         return e
     }
 })
+
 router.get('/vuelos/all', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvueloall")
-    
     try{
         const resultado = await vuelosDAO.getvueloall()
         res.json(resultado)       
     }catch(e){
-        res.status(e.status).json(e)
+        res.json(e)
     }
 })
 
@@ -87,6 +86,8 @@ router.get('/Dest/:vue_orig', async (req, res) => {
         return e
     }
 })
+
+
 /*
 async function _handleGetWithQS(req, res) {
     try {
