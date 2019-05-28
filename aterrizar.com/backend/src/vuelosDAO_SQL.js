@@ -29,8 +29,11 @@ const getDest = async(req)=> {
 }
 const getvuelo = async(req)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vuelos where orig='${req.query.origen}' and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
-        const result = await knex.raw(selectAllQuery)
+        const selectAllQuery = `SELECT * FROM vuelos where orig='${req.query.origen}'and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
+        let result = await knex.raw(selectAllQuery)
+        if(!isNaN(result)){
+            let noEncontrado = "No encontrado"
+            return noEncontrado}
         return result
     }catch(e){
         return e
