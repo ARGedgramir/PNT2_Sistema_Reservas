@@ -3,11 +3,6 @@ GO
 
 /****** Object:  Database [aterrizar.com]    Script Date: 18/5/2019 22:14:13 ******/
 CREATE DATABASE [aterrizar.com]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'aterrizar.com', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\aterrizar.com.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
- LOG ON 
-( NAME = N'aterrizar.com_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\aterrizar.com_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
 ALTER DATABASE [aterrizar.com] SET COMPATIBILITY_LEVEL = 120
