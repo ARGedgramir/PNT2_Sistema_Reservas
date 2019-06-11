@@ -29,8 +29,11 @@ const getDest = async(req)=> {
 }
 const getvuelo = async(req)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vuelos where orig='${req.query.origen}'and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
-        let result = await knex.raw(selectAllQuery)
+            const selectAllQuery = `
+            SELECT v.id_vue,    v.aerolinea,v.orig,
+            v.orig_aeropuerto,v.dest, v.dest_aeropuerto,v.fecha,v.escala_aeropuerto,v.disponible,vd.duracion,vd.hora_llegada,vd.hora_partida,vd.precio,vd.PaxDisp
+             FROM vuelos  v inner join vuelos_detalle vd on v.id_vue=vd.id_vue where orig='${req.query.origen}'and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
+            let result = await knex.raw(selectAllQuery)
         if(!isNaN(result)){
             let noEncontrado = "No encontrado"
             return noEncontrado}
@@ -39,6 +42,7 @@ const getvuelo = async(req)=> {
         return e
     }
 }
+
 const getvueloall = async()=> {
     try{
         const selectAllQuery = `SELECT * FROM vuelos`
@@ -48,6 +52,60 @@ const getvueloall = async()=> {
         return e
     }
 }
+
+
+
+const updateVuelo = async(req)=> {
+    try{
+        const selectAllQuery = `Update vuelos_detalle set paxdisp =  paxdisp -'${req.query.totpax}'
+where id_vue ='${req.query.id_vue}'`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e
+    }
+}
+const updatePax = async(req)=> {
+    try{
+        const selectAllQuery = `INSERT INTO PAX
+        VALUES ('${req.query.id_reserva}','${req.query.DNI_pax}', '${req.query.nombre_pax}','${req.query.apellido_pax}')`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e    
+    }
+}
+const reserva = async(req)=> {
+    try{
+        const selectAllQuery = `INSERT INTO reserva
+        VALUES ('${req.query.id_reserva}','${req.query.id_vue}', '${req.query.fecha}','${req.query.dni_pax}','${req.query.cant_pax}',
+        '${req.query.telefono_pax}','${req.query.mail_pax}')`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e    
+    }
+}
+const getreserva = async(req)=> {
+    try{
+        const selectAllQuery = `select r.mail_pax from reserva r where id_reserva= '${req.query.id_reserva}'`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e    
+    }
+}
+const detallereserva = async(req)=> {
+    try{
+        const selectAllQuery = `select * from PAX where id_reserva= '${req.query.id_reserva}'`
+        const result = await knex.raw(selectAllQuery)
+        return result
+    }catch(e){
+        return e    
+    }
+}
+
+
 /*
 async function getByAge(edadMin, edadMax) {
     const selectByEdadQuery = `SELECT * FROM estudiantes WHERE edad >= ${edadMin} AND edad <= ${edadMax};`
@@ -95,5 +153,10 @@ module.exports = {
     getOrig,
     getDest,
     getvuelo,
-    getvueloall
+    getvueloall,
+    updateVuelo,
+    updatePax,
+    reserva,
+    getreserva,
+    detallereserva
 }

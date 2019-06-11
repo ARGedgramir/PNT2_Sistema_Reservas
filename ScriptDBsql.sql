@@ -61,14 +61,56 @@ GO
 INSERT INTO [aterrizar.com].[dbo].[vuelos]
            ([id_vue],[aerolinea],[orig],[orig_aeropuerto],[dest],[dest_aeropuerto],[fecha],[escala_aeropuerto],[disponible])
      VALUES
-     ('brrio01','LAN','buenos aires','bue-eze','rio de janeiro','bra-gig','06-23-2019',NULL,1),
-     ('brrio02','LAN','rio de janeiro','bra-gig','buenos aires','bue-eze','06-23-2019',NULL,1)
+('brrio01','LAN','Buenos Aires','bue-eze','Rio de Janeiro','bra-gig','06-23-2019',NULL,1),
+('brrio02','LAN','Rio de Janeiro','bra-gig','Buenos Aires','bue-eze','06-23-2019',NULL,1),
+('DL101','Delta','Buenos Aires','bue-eze','Atlanta','atl-atl','08-26-2019',NULL,1),
+('DL102','Delta','Atlanta','atl-atl','Buenos Aires','bue-eze','08-30-2019',NULL,1),
+('AR2880','Aerolineas Argentinas','Buenos Aires','bue-aep','San Salvador de Jujuy','ssj-juy','05-29-2019',NULL,1),
+('AR2881','Aerolineas Argentinas','San Salvador de Jujuy','ssj-juy','Buenos Aires','bue-aep','05-30-2019',NULL,1),
+('AR2550','Aerolineas Argentinas','Buenos Aires','bue-aep','Ushuaia','tdf-uha','06-30-2019',NULL,1),
+('AR2551','Aerolineas Argentinas','Ushuaia','tdf-uha','Buenos Aires','bue-aep','06-30-2019',NULL,1),
+('AR2600','Aerolineas Argentinas','Buenos Aires','bue-aep','Mendoza','mdz-mdz','07-30-2019',NULL,1),
+('AR2601','Aerolineas Argentinas','Mendoza','mdz-mdz','Buenos Aires','bue-aep','07-30-2019',NULL,1),
+('FL143','Flybondi','Buenos Aires','bue-aep','Mendoza','mdz-mdz','7-30-2019',NULL,1),
+('FL144','Flybondi','Mendoza','mdz-mdz','Buenos Aires','bue-aep','7-30-2019',NULL,1)
 
 
 INSERT INTO [aterrizar.com].[dbo].[vuelos_detalle	]
            ([id_vue],[duracion],[hora_partida],[hora_llegada],[precio])
-     VALUES('brrio01',3,'09:00:00','12:00:00',450), ('brrio02',3,'15:00:00','18:00:00',490)
+     VALUES
+	 ('brrio01',3,'09:00:00','12:00:00',450),
+('brrio02',3,'15:00:00','18:00:00',490),
+('DL101',10,'20:35:00','06:35:00',1250),
+('DL102',10,'20:35:00','06:35:00',1300),
+('AR2880',2,'16:45:00','18:45:00',100),
+('AR2881',2,'16:45:00','18:45:00',100),
+('AR2550',2,'18:45:00','20:45:00',150),
+('AR2551',2,'21:45:00','23:45:00',150),
+('AR2600',1,'17:45:00','18:45:00',50),
+('AR2601',1,'19:45:00','20:45:00',50),
+('FL143',1,'14:30:00','15:30:00',10),
+('FL144',2,'16:30:00','17:30:00',12)
 
 GO
+alter table vuelos_detalle ADD PaxDisp	INT	
+
+CREATE TABLE [dbo].[PAX](
+	[id_reserva] [varchar](10) NOT NULL,
+	[DNI_pax] [int] NOT NULL,
+	[nombre_pax] [varchar](250) NOT NULL,
+	[apellido_pax] [varchar](250) NOT NULL,
+	)
+GO
+
+CREATE TABLE [dbo].[Reserva](
+	[id_reserva] [varchar](10) NOT NULL,
+	[id_vue] [varchar](10) NOT NULL,
+	[fecha] [varchar](250) NOT NULL,
+	[DNI_pax] [varchar](250) NOT NULL,
+	[cant_pax] [int] NOT NULL,
+	[telefono_pax] [varchar](30) NOT NULL,
+	[mail_pax] [varchar](300) NOT NULL,
+)
+go
 
 */

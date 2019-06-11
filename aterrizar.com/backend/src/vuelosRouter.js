@@ -71,7 +71,7 @@ router.get('/vuelos/all', async (req, res) => {
         res.json(e)
     }
 })
-
+    
 router.get('/Dest/:vue_orig', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getDest")
@@ -88,6 +88,56 @@ router.get('/Dest/:vue_orig', async (req, res) => {
 })
 
 
+
+router.post('/vuelo', async (req, res) => {
+    console.log(`REPLACING: ${baseURI}${req.url}`)    
+    
+    try {   
+        const estuActualizado = await vuelosDAO.updateVuelo(req)
+        res.json(estuActualizado)
+    } catch (err) {
+        res.status(err.status).json(err)
+    }
+})
+
+router.post('/PAX', async (req, res) => {
+    console.log(`REPLACING: ${baseURI}${req.url}`)
+    try {   
+  /*      const nuevo = req.body
+        if (esPasajeroInvalido(nuevo))
+        throw { status: 400, descripcion: 'el pasajero posee un formato invalido o faltan datos' }
+*/
+        const estuActualizado = await vuelosDAO.updatePax(req)
+        res.json(estuActualizado)
+    } catch (err) {
+        res.status(err.status).json(err)
+    }
+})
+router.post('/reserva', async (req, res) => {
+    console.log(`REPLACING: ${baseURI}${req.url}`)
+    try {   
+  /*      const nuevo = req.body
+        if (esPasajeroInvalido(nuevo))
+        throw { status: 400, descripcion: 'el pasajero posee un formato invalido o faltan datos' }
+*/
+        const estuActualizado = await vuelosDAO.reserva(req)
+        res.json(estuActualizado)
+    } catch (err) {
+        res.status(err.status).json(err)
+    }
+})
+
+/*function esPasajeroInvalido(req) {
+    const schema = { //crea una clase para el objeto estudiante
+        id_reserva: Joi.string().alphanum().min(1).required(),
+        DNI_pax: Joi.string().alphanum().min(1).required(),
+        nombre_pax: Joi.string().alphanum().min(1).required(),
+        apellido_pax: Joi.string().alphanum().min(1).required(),
+    }
+    const { error } = Joi.validate(req, schema); //las llaves significa agarro un objeto  y lo asigno a una definicion de un objeto.
+    return error
+}
+*/
 /*
 async function _handleGetWithQS(req, res) {
     try {

@@ -16,3 +16,4 @@ http://127.0.0.1:8090/api/vuelos/vuelos/all
 
 listado de vuelos con un origen y destino especifico.
 http://127.0.0.1:8090/api/vuelos/vuelos?fecha=2019-06-23&destino=rio%20de%20janeiro&origen=buenos%20aires
+http://127.0.0.1:8090/api/vuelos/vuelos?fecha=2019-07-30&origen=San Salvador de Jujuy&destino=Buenos Aires

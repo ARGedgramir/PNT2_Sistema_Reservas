@@ -1,12 +1,13 @@
 <template>
-  <div class="Busq_vuelos">
-    <h1>Buequeda Vuelos</h1>
-  </div>
+  <v-app id="busq_vuelos">
+    <v-text>PRUEBA bus vuelos</v-text>
+      
+  </v-app>
 </template>
 
 <script>
 export default {
-  name: 'Busq_vuelos',
+  name: 'busq_vuelos',
   props: {
     msg: String
   }

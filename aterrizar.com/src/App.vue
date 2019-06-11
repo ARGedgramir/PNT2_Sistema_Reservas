@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <img alt="Vue logo" >
     <home  msg="Aterrizar.com"/>
       <div class="nav">
         <h1>{{ msg }}</h1>
