@@ -15,32 +15,23 @@ var smtpTransport = nodemailer.createTransport({
     }
 });
 
-
-
-
-router.get('/:reserva', async (req, res) => {
+router.get('/:id_reserva', async (req, res) => {
     
-    try{
-        let detallereserva
-        const dreser = await vuelosDAO.getreserva(req)
-        console.log(dreser)
+try{
+    const mail = await vuelosDAO.getreserva(req)
+    const rtoDetalle = await vuelosDAO.detallesreserva(req)
 
-        const rtoDetalle = await vuelosDAO.detallesreserva(req)
-        detallereserva.json(rtoDetalle)
-    
-        console.log(detallereserva)
 
     const info = await smtpTransport.sendMail({
     from: '"Aterrizar.com " <info@aterrizar.com>', // sender address
-    to: `'${dreser}'`, // list of receivers
+    to: `${mail[0].mail_pax}`, // list of receivers
     subject: "Detalles de la Reserva", // Subject line
-    html: `<b> Detalle de reserva </b> '${detallereserva}'` // html body
+    html: `<b> '${rtoDetalle[0].nombre_pax}' </b>` // html body
   })
     res.json(info)}
   catch (err){
       res.json(err)
   }
-console.log("Message sent: %s", res.messageId);
 })
 
 

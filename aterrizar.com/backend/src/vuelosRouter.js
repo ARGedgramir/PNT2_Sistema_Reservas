@@ -72,10 +72,9 @@ router.get('/vuelos/all', async (req, res) => {
     }
 })
     
-router.get('/Dest/:vue_orig', async (req, res) => {
+router.get('/Dest/:vue_dest', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getDest")
-    //res.send({message: `recibimos ${req.params.vue_orig}`})
     try{
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getDest(req)
@@ -86,7 +85,6 @@ router.get('/Dest/:vue_orig', async (req, res) => {
         return e
     }
 })
-
 
 
 router.post('/vuelo', async (req, res) => {

@@ -21,17 +21,18 @@ Tablas:
 
 - reserva
 	+id_reserva
-	+DNI_pasaj
 	+id_vue
 	+fecha
+	+DNI_pax
 	+cant_pax
-
-- pasajeros
-	+DNI_pasaj
-	+nombre
-	+apellido
 	+telefono
 	+correo
+
+- PAX
+	+id_reserva
+	+DNI_pax
+	+nombre_pax
+	+apellido_pax
 
 - vue_origen
 	+id_ori

@@ -20,7 +20,7 @@ const getOrig = async()=> {
 }
 const getDest = async(req)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vue_Dest where id_dest='${req.params.vue_orig}'`
+        const selectAllQuery = `SELECT * FROM vue_Dest where id_dest='${req.params.vue_dest}'`
         const result = await knex.raw(selectAllQuery)
         return result
     }catch(e){
@@ -32,7 +32,8 @@ const getvuelo = async(req)=> {
             const selectAllQuery = `
             SELECT v.id_vue,    v.aerolinea,v.orig,
             v.orig_aeropuerto,v.dest, v.dest_aeropuerto,v.fecha,v.escala_aeropuerto,v.disponible,vd.duracion,vd.hora_llegada,vd.hora_partida,vd.precio,vd.PaxDisp
-             FROM vuelos  v inner join vuelos_detalle vd on v.id_vue=vd.id_vue where orig='${req.query.origen}'and dest='${req.query.destino}' and fecha='${req.query.fecha}'`
+             FROM vuelos  v inner join vuelos_detalle vd on v.id_vue=vd.id_vue
+              where v.orig='${req.query.origen}'and v.dest='${req.query.destino}' and v.fecha='${req.query.fecha}' and vd.PaxDisp>'${req.query.cant_pax}'`
             let result = await knex.raw(selectAllQuery)
         if(!isNaN(result)){
             let noEncontrado = "No encontrado"
@@ -88,16 +89,16 @@ const reserva = async(req)=> {
 }
 const getreserva = async(req)=> {
     try{
-        const selectAllQuery = `select r.mail_pax from reserva r where id_reserva= '${req.query.id_reserva}'`
+        const selectAllQuery = `select * from reserva where id_reserva= '${req.params.id_reserva}'`
         const result = await knex.raw(selectAllQuery)
         return result
     }catch(e){
         return e    
     }
 }
-const detallereserva = async(req)=> {
+const detallesreserva = async(req)=> {
     try{
-        const selectAllQuery = `select * from PAX where id_reserva= '${req.query.id_reserva}'`
+        const selectAllQuery = `select * from PAX where id_reserva= '${req.params.id_reserva}'`
         const result = await knex.raw(selectAllQuery)
         return result
     }catch(e){
@@ -158,5 +159,5 @@ module.exports = {
     updatePax,
     reserva,
     getreserva,
-    detallereserva
+    detallesreserva
 }
