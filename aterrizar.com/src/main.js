@@ -3,20 +3,21 @@ import App from './App.vue'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
 window.axios = require('axios');
 
-Vue.config.productionTip = false
 
 Vue.use(BootstrapVue);
 
-new Vue({
-  render: h => h(App),
 
-  data:{
-  },
+new Vue({
+  el: '#app',
   router,
-  methods:{
-    
-  }
-  
-}).$mount('#app')
+  render: h => h(App)
+
+
+})

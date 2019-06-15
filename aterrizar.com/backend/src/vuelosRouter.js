@@ -7,6 +7,7 @@ const router = express.Router()
 
 const baseURI = '/api/vuelos'
 
+
 router.get('/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getall")
@@ -54,6 +55,8 @@ router.get('/vuelos', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvuelo")
     try{
+        res.header("Access-Control-Allow-Origin", "*")
+        res.header("Access-Control-Allow-Headers", "X-Requested-With")
         const resultado = await vuelosDAO.getvuelo(req)
         res.json(resultado) 
     }catch(e){

@@ -29,6 +29,7 @@ const getDest = async(req)=> {
 }
 const getvuelo = async(req)=> {
     try{
+        
             const selectAllQuery = `
             SELECT v.id_vue,    v.aerolinea,v.orig,
             v.orig_aeropuerto,v.dest, v.dest_aeropuerto,v.fecha,v.escala_aeropuerto,v.disponible,vd.duracion,vd.hora_llegada,vd.hora_partida,vd.precio,vd.PaxDisp

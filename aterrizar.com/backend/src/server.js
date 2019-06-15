@@ -2,7 +2,7 @@ const express = require('express')
 const vuelosRouter = require('./vuelosRouter')
 const emailRouter = require('./emailRouter')
 
-const app = express()
+var app = express()
 var cors = require('cors')
 app.use(express.json())
 
