@@ -68,6 +68,8 @@ router.get('/vuelos/all', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvueloall")
     try{
+        res.header("Access-Control-Allow-Origin", "*")
+        res.header("Access-Control-Allow-Headers", "X-Requested-With")
         const resultado = await vuelosDAO.getvueloall()
         res.json(resultado)       
     }catch(e){
