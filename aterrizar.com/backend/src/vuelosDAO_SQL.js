@@ -74,7 +74,7 @@ const insertPax = async(query)=> {
         '${query.apellido_pax}')`
         const result = await knex.raw(insertarPax)
 
-        return result.status(200)
+        return result
     }catch(e){
         return e
     }
@@ -100,12 +100,25 @@ const getreserva = async(query)=> {
         return e    
     }
 }
+
+const getreservasAll = async()=> {
+    try{
+        console.log("getreserva")
+        const busquedaReserva = `select * from reserva r inner join PAX p on r.id_reserva=p.id_reserva `
+        const result = await knex.raw(busquedaReserva)
+        return result
+    }catch(e){
+        return e    
+    }
+}
+
+
 const getcantPax = async(query)=> {
     try{
         console.log("getcantPax")
         const cantPax = `select * from PAX where id_reserva= '${query.id_reserva}'`
         const result = await knex.raw(cantPax)
-        return result.status(200)
+        return result
     }catch(e){
         return e    
     }
@@ -189,5 +202,6 @@ module.exports = {
     getcantPax,
     nuevaReserva,
     getreserva,
-    detallesreserva
+    detallesreserva,
+    getreservasAll
 }

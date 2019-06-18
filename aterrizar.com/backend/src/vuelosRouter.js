@@ -126,5 +126,17 @@ router.get('/Mostrarreserva/:id_reserva', async (req, res) => {
         res.status(err.status).json(err)
     }
 })
+router.get('/Mostrarreservas/all', async (req, res) => {
+    console.log(`REPLACING: ${baseURI}${req.url}`)
+    console.log("Esto es / MostrarReservaAll")
+    try {   
+  //    Validar reserva existente
+        const busqReserva = await vuelosDAO.getreservasAll()
+        res.status(200).json(busqReserva)
+    
+    } catch (err) {
+        res.status(err.status).json(err)
+    }
+})
 
 module.exports = router

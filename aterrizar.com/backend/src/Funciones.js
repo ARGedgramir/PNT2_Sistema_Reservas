@@ -43,6 +43,8 @@ var smtpTransport = nodemailer.createTransport({
 async function cerrarReserva(query) {
     
     try{
+        const actualizacionVuelo = await actualizarVuelo(query)
+        if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar reserva"}
         const mail = await vuelosDAO.getreserva(query)
         const rtoDetalle = await vuelosDAO.detallesreserva(query)
     
@@ -83,12 +85,7 @@ async function procesarReserva(query) {
         
         // actualizar vuelo
 
-        const actualizacionVuelo = await actualizarVuelo(query)
-
         const cantPax = await vuelosDAO.getcantPax(query)
-        console.log(cantPax)
-        console.log(nuevaReserva[0].cant_pax)
-        console.log(cantPax[0][""])
         //Cerrar reserva
         if (nuevaReserva[0].cant_pax != cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
         cerrarReserva.status(200).Json("PAX Agregado")
