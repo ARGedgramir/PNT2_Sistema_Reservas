@@ -17,7 +17,7 @@ export default {
   methods: {
     listarVuelos() {
       axios
-        .get(this.url + "/vuelos/all/")
+        .get(this.url + "/all")
         .then(response => {
           this.vuelos = response.data
         })

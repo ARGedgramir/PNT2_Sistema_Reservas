@@ -46,13 +46,13 @@ router.get('/vuelos', async (req, res) => {
     }
 })
 
-router.get('/vuelos/all', async (req, res) => {
+router.get('/all/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvueloall")
     try{
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        const resultado = await vuelosDAO.getvueloall()
+        const resultado = await vuelosDAO.getVueloall()
         res.json(resultado)       
     }catch(e){
         res.json(e)
@@ -68,9 +68,7 @@ router.post('/nuevaReserva', async (req, res) => {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         const nuevaReserva = await funciones.procesarReserva(req.query)
-        const mensajeResponse = { status: 'CREADO CORRECTAMENTE', nuevaReserva }
-        
-        res.status(200).json(mensajeResponse)
+        res.json(nuevaReserva)
     } catch (e) {
         res.status(e.status).json(e)
     }
@@ -103,9 +101,7 @@ router.post('/PAX', async (req, res) => {
         //Cerrar reserva
         if (reserva[0].cant_pax == cantPax[0][""])
         throw funciones.cerrarReserva(req.query,res)
-
-        const mensajeResponse = { status: 'PAX Creado Correctamente', insertPax }
-        res.status(200).json(mensajeResponse)
+        res.status(200).json()
     } catch (err) {
         res.status(err.status).json(err)
     }

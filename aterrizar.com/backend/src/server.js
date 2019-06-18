@@ -2,16 +2,19 @@ const express = require('express')
 const vuelosRouter = require('./vuelosRouter')
 const emailRouter = require('./emailRouter')
 
-var app = express()
 var cors = require('cors')
+
+var app = express()
+
 app.use(express.json())
 
+
+app.use(cors())
+
 app.set('json spaces', 4)
-
-
 app.use('/api/vuelos', vuelosRouter)
 app.use('/api/email', emailRouter)
-app.use(cors())
+
 
 const puerto = 8090
 const emailPort = 3000

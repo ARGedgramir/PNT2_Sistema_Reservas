@@ -58,7 +58,6 @@ async function cerrarReserva(query) {
     }
 }
 
-
 async function actualizarVuelo(query)  {
     try {   
         const actuVuelo = await vuelosDAO.updateVuelo(query)
@@ -73,22 +72,26 @@ async function procesarReserva(query) {
         //Validar Reserva Existente
         let cerrarReserva
         const busqReserva = await vuelosDAO.getreserva(query)
-        if (isNaN(busqReserva))
-        throw { status: 400, descripcion: 'Reserva Existente'}
+        if (isNaN(busqReserva)) throw { status: 400, descripcion: 'Reserva Existente'}
         //Validar contenido de la Reserva
-        const  = query
-        if(validarReserva(reserva)) 
+        if(validarReserva(query)) 
         throw{ status: 400, descripcion: 'La Reserva posee un formato invalido o faltan datos'}   
         //Agregar Reserva
         const nuevaReserva = await vuelosDAO.nuevaReserva(query)
         //Agregar PAX     
-        // eslint-disable-next-line no-unused-vars
         const insertPax = await vuelosDAO.insertPax(query)      
-        const actualizacionVuelo = await actualizarVuelo(query)
-        const cantPax = await vuelosDAO.getcantPax(req.query)
+        
+        // actualizar vuelo
 
+        const actualizacionVuelo = await actualizarVuelo(query)
+
+        const cantPax = await vuelosDAO.getcantPax(query)
+        console.log(cantPax)
+        console.log(nuevaReserva[0].cant_pax)
+        console.log(cantPax[0][""])
         //Cerrar reserva
-        if (reserva[0].cant_pax != cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
+        if (nuevaReserva[0].cant_pax != cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
+        cerrarReserva.status(200).Json("PAX Agregado")
         return cerrarReserva
     }catch(e){
         return e  

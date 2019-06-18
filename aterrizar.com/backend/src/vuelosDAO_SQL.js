@@ -46,11 +46,21 @@ const getVuelodetalle = async(query)=> {
     }
 }
 
+const getVueloall = async()=> {
+    try{
+        const detalleVuelo = `SELECT * FROM vuelos`
+        const result = await knex.raw(detalleVuelo)
+        return result
+    }catch(e){
+        return e
+    }
+}
+
 const updateVuelo = async(query)=> {
     try{
         const actualizarVuelo = `Update vuelos_detalle set paxdisp =  paxdisp -'${query.totpax}' where id_vue ='${query.id_vue}'`
         const result = await knex.raw(actualizarVuelo)
-        return result
+        return result.status(200)
     }catch(e){
         return e
     }
@@ -82,6 +92,7 @@ const nuevaReserva = async(query)=> {
 }
 const getreserva = async(query)=> {
     try{
+        console.log("getreserva")
         const busquedaReserva = `select * from reserva where id_reserva= '${query.id_reserva}'`
         const result = await knex.raw(busquedaReserva)
         return result
@@ -91,9 +102,10 @@ const getreserva = async(query)=> {
 }
 const getcantPax = async(query)=> {
     try{
-        const cantPax = `  select COUNT(id_reserva) from PAX where id_reserva= '${query.id_reserva}'`
+        console.log("getcantPax")
+        const cantPax = `select * from PAX where id_reserva= '${query.id_reserva}'`
         const result = await knex.raw(cantPax)
-        return result
+        return result.status(200)
     }catch(e){
         return e    
     }
@@ -101,6 +113,7 @@ const getcantPax = async(query)=> {
 
 const getPax = async(query)=> {
     try{
+        console.log("getPax")
         const busquedaPAX = `select * from pax where id_reserva= '${query.id_reserva}'and nombre_pax= '${query.nombre_pax}' and apellido_pax ='${query.apellido_pax}' and DNI_pax= '${query.DNI_pax}'`
         const result = await knex.raw(busquedaPAX)
         return result
@@ -110,6 +123,7 @@ const getPax = async(query)=> {
 }
 const detallesreserva = async(id_reserva)=> {
     try{
+        console.log("detalleReserva")
         const detallesReserva = `select r.id_reserva, 
         r.id_vue,r.fecha, r.DNI_pax as DNI_Titular, r.mail_pax, r.telefono_pax, r.cant_pax, p.DNI_pax, p.nombre_pax, p.apellido_pax
         from reserva r  inner join PAX p on r.id_reserva=p.id_reserva where r.id_reserva='${id_reserva}'`
@@ -168,6 +182,7 @@ module.exports = {
     getDest,
     getvuelo,
     getVuelodetalle,
+    getVueloall,
     updateVuelo,
     insertPax,
     getPax,
