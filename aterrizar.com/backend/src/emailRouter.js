@@ -3,6 +3,7 @@ var nodemailer = require("nodemailer");
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 const router = express.Router()
 const vuelosDAO = require('./vuelosDAO_SQL')
+const funciones = require('./funciones')
 
 
 
@@ -18,8 +19,8 @@ var smtpTransport = nodemailer.createTransport({
 router.get('/:id_reserva', async (req, res) => {
     
 try{
-    const mail = await vuelosDAO.getreserva(req)
-    const rtoDetalle = await vuelosDAO.detallesreserva(req)
+    const mail = await vuelosDAO.getreserva(req.query)
+    const rtoDetalle = await vuelosDAO.detallesreserva(req.query)
 
 
     const info = await smtpTransport.sendMail({

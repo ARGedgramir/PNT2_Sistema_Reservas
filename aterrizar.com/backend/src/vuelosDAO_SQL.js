@@ -1,41 +1,32 @@
 const knex = require('./db/knex')
 
-const getAll = async()=> {
-    try{
-        const selectAllQuery = `SELECT * FROM vue_orig`
-        const result = await knex.raw(selectAllQuery)
-        return result
-    }catch(e){
-        return e
-    }
-}
 const getOrig = async()=> {
     try{
-        const selectAllQuery = `SELECT * FROM vue_Orig`
-        const result = await knex.raw(selectAllQuery)
+        const aeropuertosOrigen = `SELECT * FROM vue_Orig`
+        const result = await knex.raw(aeropuertosOrigen)
         return result
     }catch(e){
         return e
     }
 }
-const getDest = async(req)=> {
+const getDest = async(params)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vue_Dest where id_dest='${req.params.vue_dest}'`
-        const result = await knex.raw(selectAllQuery)
+        const aeropuertosDestino = `SELECT * FROM vue_Dest where id_dest='${params.vue_dest}'`
+        const result = await knex.raw(aeropuertosDestino)
         return result
     }catch(e){
         return e
     }
 }
-const getvuelo = async(req)=> {
+const getvuelo = async(query)=> {
     try{
         
-            const selectAllQuery = `
+            const busquedaVuelosUsuario = `
             SELECT v.id_vue,    v.aerolinea,v.orig,
             v.orig_aeropuerto,v.dest, v.dest_aeropuerto,v.fecha,v.escala_aeropuerto,v.disponible,vd.duracion,vd.hora_llegada,vd.hora_partida,vd.precio,vd.PaxDisp
              FROM vuelos  v inner join vuelos_detalle vd on v.id_vue=vd.id_vue
-              where v.orig='${req.query.origen}'and v.dest='${req.query.destino}' and v.fecha='${req.query.fecha}' and vd.PaxDisp>'${req.query.cant_pax}'`
-            let result = await knex.raw(selectAllQuery)
+              where v.orig='${query.origen}'and v.dest='${query.destino}' and v.fecha='${query.fecha}' and vd.PaxDisp>'${query.cant_pax}'`
+            let result = await knex.raw(busquedaVuelosUsuario)
         if(!isNaN(result)){
             let noEncontrado = "No encontrado"
             return noEncontrado}
@@ -45,62 +36,84 @@ const getvuelo = async(req)=> {
     }
 }
 
-const getvueloall = async()=> {
+const getVuelodetalle = async(query)=> {
     try{
-        const selectAllQuery = `SELECT * FROM vuelos`
-        const result = await knex.raw(selectAllQuery)
+        const detalleVuelo = `SELECT paxDisp FROM vuelos_detalle where id_vue='${query.id_vue}'`
+        const result = await knex.raw(detalleVuelo)
         return result
     }catch(e){
         return e
     }
 }
 
-
-
-const updateVuelo = async(req)=> {
+const updateVuelo = async(query)=> {
     try{
-        const selectAllQuery = `Update vuelos_detalle set paxdisp =  paxdisp -'${req.query.totpax}'
-where id_vue ='${req.query.id_vue}'`
-        const result = await knex.raw(selectAllQuery)
+        const actualizarVuelo = `Update vuelos_detalle set paxdisp =  paxdisp -'${query.totpax}' where id_vue ='${query.id_vue}'`
+        const result = await knex.raw(actualizarVuelo)
         return result
     }catch(e){
         return e
     }
 }
-const updatePax = async(req)=> {
+const insertPax = async(query)=> {
     try{
-        const selectAllQuery = `INSERT INTO PAX
-        VALUES ('${req.query.id_reserva}','${req.query.DNI_pax}', '${req.query.nombre_pax}','${req.query.apellido_pax}')`
-        const result = await knex.raw(selectAllQuery)
+        const insertarPax  = `INSERT INTO PAX
+        VALUES ('${query.id_reserva}',
+        '${query.DNI_pax}',
+        '${query.nombre_pax}',
+        '${query.apellido_pax}')`
+        const result = await knex.raw(insertarPax)
+
+        return result.status(200)
+    }catch(e){
+        return e
+    }
+}
+const nuevaReserva = async(query)=> {
+    try{
+        const insertarReserva = `INSERT INTO reserva
+        VALUES ('${query.id_reserva}','${query.id_vue}', '${query.fecha}','${query.DNI_pax}','${query.cant_pax}',
+        '${query.telefono_pax}','${query.mail_pax}')`
+        const result = await knex.raw(insertarReserva)
+        return result
+    }catch(e){
+        return e
+    }
+}
+const getreserva = async(query)=> {
+    try{
+        const busquedaReserva = `select * from reserva where id_reserva= '${query.id_reserva}'`
+        const result = await knex.raw(busquedaReserva)
         return result
     }catch(e){
         return e    
     }
 }
-const reserva = async(req)=> {
+const getcantPax = async(query)=> {
     try{
-        const selectAllQuery = `INSERT INTO reserva
-        VALUES ('${req.query.id_reserva}','${req.query.id_vue}', '${req.query.fecha}','${req.query.dni_pax}','${req.query.cant_pax}',
-        '${req.query.telefono_pax}','${req.query.mail_pax}')`
-        const result = await knex.raw(selectAllQuery)
+        const cantPax = `  select COUNT(id_reserva) from PAX where id_reserva= '${query.id_reserva}'`
+        const result = await knex.raw(cantPax)
         return result
     }catch(e){
         return e    
     }
 }
-const getreserva = async(req)=> {
+
+const getPax = async(query)=> {
     try{
-        const selectAllQuery = `select * from reserva where id_reserva= '${req.params.id_reserva}'`
-        const result = await knex.raw(selectAllQuery)
+        const busquedaPAX = `select * from pax where id_reserva= '${query.id_reserva}'and nombre_pax= '${query.nombre_pax}' and apellido_pax ='${query.apellido_pax}' and DNI_pax= '${query.DNI_pax}'`
+        const result = await knex.raw(busquedaPAX)
         return result
     }catch(e){
         return e    
     }
 }
-const detallesreserva = async(req)=> {
+const detallesreserva = async(id_reserva)=> {
     try{
-        const selectAllQuery = `select * from PAX where id_reserva= '${req.params.id_reserva}'`
-        const result = await knex.raw(selectAllQuery)
+        const detallesReserva = `select r.id_reserva, 
+        r.id_vue,r.fecha, r.DNI_pax as DNI_Titular, r.mail_pax, r.telefono_pax, r.cant_pax, p.DNI_pax, p.nombre_pax, p.apellido_pax
+        from reserva r  inner join PAX p on r.id_reserva=p.id_reserva where r.id_reserva='${id_reserva}'`
+        const result = await knex.raw(detallesReserva)
         return result
     }catch(e){
         return e    
@@ -151,14 +164,15 @@ async function updateByDni(dni, nuevoEstu) {
 }
 */
 module.exports = {
-    getAll,
     getOrig,
     getDest,
     getvuelo,
-    getvueloall,
+    getVuelodetalle,
     updateVuelo,
-    updatePax,
-    reserva,
+    insertPax,
+    getPax,
+    getcantPax,
+    nuevaReserva,
     getreserva,
     detallesreserva
 }

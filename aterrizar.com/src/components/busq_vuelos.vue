@@ -16,16 +16,13 @@ export default {
   },
   methods: {
     listarVuelos() {
-      
       axios
-
         .get(this.url + "/vuelos/all/")
         .then(response => {
           this.vuelos = response.data
-          
         })
         .catch(e => {
-          console.log(2);
+          console.log(e);
         });
     }
   },
