@@ -22,5 +22,10 @@ export default new Router({
         name: 'busq_vuelos',
         component: () => import('./components/busq_vuelos.vue')
     },
+    {
+        path:'/List_Reservas',
+        name: 'List_Reservas',
+        component: () => import('./components/List_Reservas.vue')
+    },
     ]
 })

@@ -10,7 +10,8 @@
           <b-navbar-nav>
             <router-link to="/">&nbsp;|&nbsp;Home | </router-link>
             <router-link to="/Busq_Vuelos"> &nbsp; Listado de Vuelos |</router-link>
-            <router-link to="/Busq_Reservas">&nbsp; Busqueda de Vuelos</router-link>
+            <router-link to="/Busq_Reservas">&nbsp; Busqueda de Vuelos|</router-link>
+            <router-link to="/List_Reservas">&nbsp; Listado de Reservas</router-link>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
