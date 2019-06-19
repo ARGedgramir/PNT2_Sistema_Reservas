@@ -89,7 +89,7 @@ router.post('/PAX', async (req, res) => {
         if(funciones.validarPax(req.query))
         throw{ status: 401, descripcion: 'El Pasajero posee un formato invalido o faltan datos'}
         //Agregar PAX     
-        const insertPax = await vuelosDAO.insertPax(req.query   )
+        await vuelosDAO.insertPax(req.query   )
         cantPax[0][""]++
         //Cerrar reserva
         if (reserva[0].cant_pax == cantPax[0][""])
@@ -114,7 +114,6 @@ router.get('/Mostrarreserva/:id_reserva', async (req, res) => {
   //    Buscar detalles de Reserva      
         const detalleReserva = await vuelosDAO.detallesreserva(req.params.id_reserva)
         res.status(200).json(detalleReserva)
-    
     } catch (err) {
         res.status(err.status).json(err)
     }

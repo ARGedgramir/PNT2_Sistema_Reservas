@@ -73,7 +73,7 @@ const insertPax = async(query)=> {
         '${query.nombre_pax}',
         '${query.apellido_pax}')`
         const result = await knex.raw(insertarPax)
-        return result.status
+        return result
     }catch(e){
         return e
     }
@@ -89,6 +89,7 @@ const nuevaReserva = async(query)=> {
         return e
     }
 }
+
 const getreserva = async(query)=> {
     try{
         console.log("getreserva")
@@ -139,6 +140,7 @@ const detallesreserva = async(id_reserva)=> {
         r.id_vue,r.fecha, r.DNI_pax as DNI_Titular, r.mail_pax, r.telefono_pax, r.cant_pax, p.DNI_pax, p.nombre_pax, p.apellido_pax
         from reserva r  inner join PAX p on r.id_reserva=p.id_reserva where r.id_reserva='${id_reserva}'`
         const result = await knex.raw(detallesReserva)
+        console.log(detallesReserva)
         return result
     }catch(e){
         return e    

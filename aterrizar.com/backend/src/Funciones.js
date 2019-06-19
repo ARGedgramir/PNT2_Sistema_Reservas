@@ -53,41 +53,49 @@ async function procesarReserva(query,res) {
         if(validarReserva(query)) 
         throw{ status: 400, descripcion: 'La Reserva posee un formato invalido o faltan datos'}   
         //Agregar Reserva
-        await vuelosDAO.nuevaReserva(query)
+        const generarreserva = await vuelosDAO.nuevaReserva(query)
+        if (generarreserva)
+            throw { status: 401, descripcion: 'Error al generar reservas' }
+
         //Agregar PAX     
-        await vuelosDAO.insertPax(query)
+        const crearPAX = await vuelosDAO.insertPax(query)
+        if (crearPAX)
+            throw { status: 402, descripcion: 'Error al crear Pasajero'}
 
         // actualizar vuelo
         const cantPax = await vuelosDAO.getcantPax(query)
-    
-        //Cerrar reserva
-        if (query.cant_pax === cantPax ){
-            console.log("Cerrar vuelo")
-            //const cerrarReserva = await cerrarReservas(query)
-            //cerrarReserva.status(200).Json("Reserva Cerrada")
-            //return cerrarReserva
-        } else return res.status(200).Json("Pax Agregado")
+    console.log("ANTES DE CERRAR")
+        //Cerrar reserva 
+        if (query.cant_pax == cantPax ){
+        /* const cerrarReserva = await cerrarReservas(query,res)
+            if (cerrarReserva)
+            throw { status: 403, descripcion: 'Error al cerrar la reserva'}}
+        return cerrarReserva.status(200).Json("Reserva Cerrada")
+*/
+        } throw { status: 204, descripcion: 'Pasajero Agregado' }
+        
     }catch(e){
         return e  
     }
 }
 
-async function cerrarReservas(query) {
+async function cerrarReservas(query,res) {
     
     try{
         //const actualizacionVuelo = await actualizarVuelo(query)
         //if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar reserva"}
         console.log("Reserva Cerrada")
         const mail = await vuelosDAO.getreserva(query)
-        const rtoDetalle = await vuelosDAO.detallesreserva(query)
-    
+        console.log(mail)
+        const rtoDetalle = await vuelosDAO.detallesreserva(query.id_reserva)
+        console.log(rtoDetalle)
         const info = await smtpTransport.sendMail({
         from: '"Aterrizar.com " <info@aterrizar.com>', // sender address
         to: `${mail[0].mail_pax}`, // list of receivers
         subject: "Detalles de la Reserva", // Subject line
         html: `<b> '${rtoDetalle[0].nombre_pax}' </b>` // html body
       })
-    return info
+      res.json(info)
     }catch (e){
         return e
     }
