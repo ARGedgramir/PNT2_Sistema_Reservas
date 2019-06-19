@@ -104,7 +104,7 @@ const getreserva = async(query)=> {
 const getreservasAll = async()=> {
     try{
         console.log("getreserva")
-        const busquedaReserva = `select * from reserva r inner join PAX p on r.id_reserva=p.id_reserva `
+        const busquedaReserva = `select * from reserva r inner join PAX p on r. =p.id_reserva `
         const result = await knex.raw(busquedaReserva)
         return result
     }catch(e){
@@ -118,10 +118,11 @@ const getcantPax = async(query)=> {
         console.log("getcantPax")
         const cantPax = `select * from PAX where id_reserva= '${query.id_reserva}'`
         const result = await knex.raw(cantPax)
+        console.log(result)
         return result
     }catch(e){
         return e    
-    }
+    }   
 }
 
 const getPax = async(query)=> {

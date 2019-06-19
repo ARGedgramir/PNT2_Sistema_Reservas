@@ -84,10 +84,10 @@ async function procesarReserva(query) {
         const insertPax = await vuelosDAO.insertPax(query)      
         
         // actualizar vuelo
-
         const cantPax = await vuelosDAO.getcantPax(query)
+        
         //Cerrar reserva
-        if (nuevaReserva[0].cant_pax != cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
+        if (nuevaReserva[0].cant_pax == cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
         cerrarReserva.status(200).Json("PAX Agregado")
         return cerrarReserva
     }catch(e){

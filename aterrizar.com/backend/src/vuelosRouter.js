@@ -126,6 +126,7 @@ router.get('/Mostrarreserva/:id_reserva', async (req, res) => {
         res.status(err.status).json(err)
     }
 })
+
 router.get('/Mostrarreservas/all', async (req, res) => {
     console.log(`REPLACING: ${baseURI}${req.url}`)
     console.log("Esto es / MostrarReservaAll")
