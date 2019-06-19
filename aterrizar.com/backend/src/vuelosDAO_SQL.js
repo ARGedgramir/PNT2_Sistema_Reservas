@@ -73,8 +73,7 @@ const insertPax = async(query)=> {
         '${query.nombre_pax}',
         '${query.apellido_pax}')`
         const result = await knex.raw(insertarPax)
-
-        return result
+        return result.status
     }catch(e){
         return e
     }
@@ -115,11 +114,9 @@ const getreservasAll = async()=> {
 
 const getcantPax = async(query)=> {
     try{
-        console.log("getcantPax")
-        const cantPax = `select * from PAX where id_reserva= '${query.id_reserva}'`
+        const cantPax = `select count(id_reserva) from PAX where id_reserva= '${query.id_reserva}'`
         const result = await knex.raw(cantPax)
-        console.log(result)
-        return result
+        return result[0]['']
     }catch(e){
         return e    
     }   
@@ -149,48 +146,6 @@ const detallesreserva = async(id_reserva)=> {
 }
 
 
-/*
-async function getByAge(edadMin, edadMax) {
-    const selectByEdadQuery = `SELECT * FROM estudiantes WHERE edad >= ${edadMin} AND edad <= ${edadMax};`
-    const result = await knex.raw(selectByEdadQuery)
-    //     .select('*').from('estudiantes')
-    //     .whereBetween('edad', [edadMin, edadMax])
-    return result
-}
-
-async function getByDni(dni) {
-    const selectByDni = `SELECT TOP 1 * FROM estudiantes WHERE dni='${dni}';`
-    const result = await knex.raw(selectByDni)
-    return result[0]
-}
-
-async function add(nuevo) {
-    try {
-        let insertionQuery = 'INSERT INTO estudiantes '
-        insertionQuery += '(nombre, apellido, edad, dni) '
-        insertionQuery += `VALUES ('${nuevo.nombre}', '${nuevo.apellido}', ${nuevo.edad}, '${nuevo.dni}')`
-        await knex.raw(insertionQuery)
-        return nuevo
-    } catch (err) {
-        throw { status: 500, descripcion: err.message }
-    }
-}
-
-async function deleteByDni(dni) {
-    const deleteByDniQuery = `DELETE FROM estudiantes WHERE dni=${dni}`
-    await knex.raw(deleteByDniQuery)
-    return
-}
-
-async function updateByDni(dni, nuevoEstu) {
-    let updateByDniQuery = 'UPDATE estudiantes '
-    updateByDniQuery += `SET nombre='${nuevoEstu.nombre}', `
-    updateByDniQuery += `apellido='${nuevoEstu.apellido}', edad=${nuevoEstu.edad}, dni='${nuevoEstu.dni}' `
-    updateByDniQuery += `WHERE dni=${dni};`
-    await knex.raw(updateByDniQuery)
-    return nuevoEstu
-}
-*/
 module.exports = {
     getOrig,
     getDest,

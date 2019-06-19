@@ -115,6 +115,7 @@ export default {
         nombreReserva: '',
         apellidoReserva:'',
         telefonoReserva:'',
+        dniReserva:'',
         mailReserva:'',
         tarjReserva:'',
       }
@@ -130,17 +131,15 @@ export default {
     enviarReserva(){
       axios.post(
         this.url +
-            "/nuevaReserva/" , {
-              id_reserva: 1,
-              id_vue: this.reserva.id_vue,
-              fecha: this.fecha,
-              dni_pax: this.reserva.dniReserva,
-              cant_pax: this.cant_pax,
-              telefono_pax: this.reserva.telefonoReserva,
-              mail_pax: this.reserva.mailReserva,
-              nombre_pax: this.reserva.nombreReserva,
-              apellido_pax: this.reserva.apellidoReserva,
-            }
+            "/nuevaReserva?id_reserva=" +
+            this.reserva.id_vue+this.reserva.dniReserva+
+            "&id_vue="+this.reserva.id_vue+
+            "&fecha="+this.reserva.fecha+
+            "&dni_pax="+this.reserva.dniReserva+
+            "&cant_pax="+this.reserva.cant_pax+
+            "&telefono_pax="+this.reserva.telefonoReserva+
+            "&mail_pax="+this.reserva.mailReserva+
+            "&nombre_pax="+this.reserva.nombreReserva
         )
         .then(response => {
           console.log(response)

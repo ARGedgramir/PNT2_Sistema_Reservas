@@ -16,6 +16,7 @@ function validarReserva(query) {
         apellido_pax: Joi.string().alphanum().min(1).required(),
     }
     const { error } = Joi.validate(query, schema); //las llaves significa agarro un objeto  y lo asigno a una definicion de un objeto.
+    console.log(error)
     return error
 }
 
@@ -40,11 +41,43 @@ var smtpTransport = nodemailer.createTransport({
 });
 
 
-async function cerrarReserva(query) {
+
+
+async function procesarReserva(query,res) {
+    try{
+        //Validar Reserva Existente
+        const busqReserva = await vuelosDAO.getreserva(query)
+        if (isNaN(busqReserva)) throw { status: 400, descripcion: 'Reserva Existente'}
+        //Validar contenido de la Reserva
+        console.log(query)
+        if(validarReserva(query)) 
+        throw{ status: 400, descripcion: 'La Reserva posee un formato invalido o faltan datos'}   
+        //Agregar Reserva
+        await vuelosDAO.nuevaReserva(query)
+        //Agregar PAX     
+        await vuelosDAO.insertPax(query)
+
+        // actualizar vuelo
+        const cantPax = await vuelosDAO.getcantPax(query)
+    
+        //Cerrar reserva
+        if (query.cant_pax === cantPax ){
+            console.log("Cerrar vuelo")
+            //const cerrarReserva = await cerrarReservas(query)
+            //cerrarReserva.status(200).Json("Reserva Cerrada")
+            //return cerrarReserva
+        } else return res.status(200).Json("Pax Agregado")
+    }catch(e){
+        return e  
+    }
+}
+
+async function cerrarReservas(query) {
     
     try{
-        const actualizacionVuelo = await actualizarVuelo(query)
-        if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar reserva"}
+        //const actualizacionVuelo = await actualizarVuelo(query)
+        //if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar reserva"}
+        console.log("Reserva Cerrada")
         const mail = await vuelosDAO.getreserva(query)
         const rtoDetalle = await vuelosDAO.detallesreserva(query)
     
@@ -69,31 +102,6 @@ async function actualizarVuelo(query)  {
     }
 }
 
-async function procesarReserva(query) {
-    try{
-        //Validar Reserva Existente
-        let cerrarReserva
-        const busqReserva = await vuelosDAO.getreserva(query)
-        if (isNaN(busqReserva)) throw { status: 400, descripcion: 'Reserva Existente'}
-        //Validar contenido de la Reserva
-        if(validarReserva(query)) 
-        throw{ status: 400, descripcion: 'La Reserva posee un formato invalido o faltan datos'}   
-        //Agregar Reserva
-        const nuevaReserva = await vuelosDAO.nuevaReserva(query)
-        //Agregar PAX     
-        const insertPax = await vuelosDAO.insertPax(query)      
-        
-        // actualizar vuelo
-        const cantPax = await vuelosDAO.getcantPax(query)
-        
-        //Cerrar reserva
-        if (nuevaReserva[0].cant_pax == cantPax[0][""] ) throw cerrarReserva = await cerrarReserva(query)
-        cerrarReserva.status(200).Json("PAX Agregado")
-        return cerrarReserva
-    }catch(e){
-        return e  
-    }
-}
 
 module.exports = {
     validarReserva,

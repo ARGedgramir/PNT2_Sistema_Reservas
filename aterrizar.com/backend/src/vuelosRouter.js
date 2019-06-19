@@ -50,8 +50,6 @@ router.get('/all/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvueloall")
     try{
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         const resultado = await vuelosDAO.getVueloall()
         res.json(resultado)       
     }catch(e){
@@ -64,10 +62,7 @@ router.post('/nuevaReserva', async (req, res) => {
     console.log(`REPLACING: ${baseURI}${req.url}`)
     console.log("Esto es / nuevaReserva")
     try {   
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
-        const nuevaReserva = await funciones.procesarReserva(req.query)
+        const nuevaReserva = await funciones.procesarReserva(req.query,res)
         res.json(nuevaReserva)
     } catch (e) {
         res.status(e.status).json(e)
@@ -78,8 +73,6 @@ router.post('/PAX', async (req, res) => {
     console.log(`REPLACING: ${baseURI}${req.url}`)
     console.log("Esto es / insertarPax")
     try {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         const reserva = await vuelosDAO.getreserva(req.query)
         if (!isNaN(reserva))
         throw { status: 400, descripcion: 'La Reserva no Existente'}
