@@ -1,6 +1,8 @@
 const express = require('express')
 const vuelosRouter = require('./vuelosRouter')
 const emailRouter = require('./emailRouter')
+const reservasRouter = require('./reservasRouter')
+const paxRouter = require('./paxRouter')
 
 var cors = require('cors')
 
@@ -14,6 +16,8 @@ app.use(cors())
 app.set('json spaces', 4)
 app.use('/api/vuelos', vuelosRouter)
 app.use('/api/email', emailRouter)
+app.use('/api/reservas', reservasRouter)
+app.use('/api/pax', paxRouter)
 
 
 const puerto = 8090

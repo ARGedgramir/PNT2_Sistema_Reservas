@@ -3,10 +3,7 @@ const _ = require('lodash')
 const vuelosDAO = require('./vuelosDAO_SQL')
 const router = express.Router()
 const funciones = require('./funciones')
-
 const baseURI = '/api/vuelos'
-
-
 
 router.get('/Orig/', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
@@ -15,7 +12,7 @@ router.get('/Orig/', async (req, res) => {
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getOrig(req)
             res.json(resultado)
-        }else   console.log(res.query)
+        }else   res.status(400).json("Error al Recibir aeropuertos de Origen")
     }catch(e){
         return e
     }
@@ -27,7 +24,7 @@ router.get('/Dest/', async (req, res) => {
         if (_.isEmpty(req.query)) {
             const resultado = await vuelosDAO.getAll(req.params)
             res.json(resultado)
-        }else   console.log(res.query)
+        }else   res.status(400).json("Error al Recibir aeropuertos de Destino")
     }catch(e){
         return e
     }
@@ -58,17 +55,6 @@ router.get('/all/', async (req, res) => {
 })
     
 
-router.post('/nuevaReserva', async (req, res) => {
-    console.log(`REPLACING: ${baseURI}${req.url}`)
-    console.log("Esto es / nuevaReserva")
-    try {   
-        const nuevaReserva = await funciones.procesarReserva(req.query,res)
-        res.json(nuevaReserva)
-    } catch (e) {
-        res.status(e.status).json(e)
-    }
-
-})
 router.post('/PAX', async (req, res) => {
     console.log(`REPLACING: ${baseURI}${req.url}`)
     console.log("Esto es / insertarPax")
@@ -100,36 +86,5 @@ router.post('/PAX', async (req, res) => {
     }
 })  
 
-
-//////////////////////////OK/////////////////////////////////
-router.get('/Mostrarreserva/:id_reserva', async (req, res) => {
-    console.log(`REPLACING: ${baseURI}${req.url}`)
-    console.log("Esto es / MostrarReserva")
-    try {   
-  //    Validar reserva existente
-        const busqReserva = await vuelosDAO.getreserva(req.params)
-        if (!isNaN(busqReserva))
-            throw { status: 400, descripcion: 'Reserva invalida'}
-            
-  //    Buscar detalles de Reserva      
-        const detalleReserva = await vuelosDAO.detallesreserva(req.params.id_reserva)
-        res.status(200).json(detalleReserva)
-    } catch (err) {
-        res.status(err.status).json(err)
-    }
-})
-
-router.get('/Mostrarreservas/all', async (req, res) => {
-    console.log(`REPLACING: ${baseURI}${req.url}`)
-    console.log("Esto es / MostrarReservaAll")
-    try {   
-  //    Validar reserva existente
-        const busqReserva = await vuelosDAO.getreservasAll()
-        res.status(200).json(busqReserva)
-    
-    } catch (err) {
-        res.status(err.status).json(err)
-    }
-})
 
 module.exports = router

@@ -13,7 +13,7 @@
     <b-button block variant="primary" @click="buscarVuelo()">Buscar Vuelo</b-button>
     <br>
 
-      <table class="table table-hover table-sm">
+      <table v-if="vuelosEncontrados==true">
           <thead>
             <th>ID</th>
             <th>Aerolinea</th>
@@ -28,10 +28,8 @@
             <th>Precio</th>
             <th>Cantidad de Lugares</th>
             <th></th>
-
-
           </thead>
-          <tbody>
+          <tbody >
             <tr v-for="vuelo in vuelos" :key="vuelo.id_vue">
               <td>{{vuelo.id_vue}}</td>
               <td>{{vuelo.aerolinea}}</td>
@@ -47,12 +45,12 @@
               <td>{{vuelo.PaxDisp}}</td>
               <td><button
                   type="button"
-                  @click="reservar(vuelo.id_vue)"
+                  @click="reservar(vuelo.id_vue)
+                  formReserva=true"
                   class="btn btn-block btn-outline-primary waves-effect"
                   >Reservar
                   </button>
               </td>
-
             </tr>
           </tbody>
         </table>
@@ -71,22 +69,19 @@
         <br>
         <b-form-input v-model="reserva.tarjReserva"     placeholder="Ingresar Tarjeta"></b-form-input>
         <br>
-        <button 
-                  type="button"
-                  @click="enviarReserva(), formReserva=false, reservaExitosa=true"
-                  class="btn btn-block btn-outline-primary waves-effect"
-                  >Reservar
+        <button type="button"
+                  @click="enviarReserva()"
+                  class="btn btn-block btn-outline-primary waves-effect">Reservar
                   </button>
       </span>
-      <span v-if="reservaExitosa==true">
-    <b-alert show variant="primary">SU RESERVA HA SIDO REALIZADA</b-alert>
-      </span>
+      <span v-if="reservaExitosa==true && formReserva==true"><b-alert show variant="primary">SU RESERVA HA SIDO REALIZADA</b-alert></span>
+        <!-- <b-table :fields="id_vue" striped hover :items="vuelos"></b-table> -->
+
+      <span v-if="reservaExitosa==false && formReserva==true && reservavacia==false"><b-alert show variant="primary">SU RESERVA NO HA SIDO REALIZADA</b-alert></span>
         <!-- <b-table :fields="id_vue" striped hover :items="vuelos"></b-table> -->
 
     <b-alert
-      :show="dismissCountDown"
-      dismissible
-      fade
+      :show="dismissCountDown" dismissible fade
       variant="danger"
       @dismiss-count-down="countDownChanged"
     ><b>Vuelo no encontrado!!</b> El mensaje desaparecerá en...{{ dismissCountDown }}</b-alert>
@@ -99,6 +94,7 @@ export default {
     return {
       name: "busq_vuelos",
       url: "http://localhost:8090/api/vuelos",
+      url_reserv: "http://localhost:8090/api/reservas",
       vuelos: [],
       fecha: "",
       origen: "",
@@ -109,6 +105,7 @@ export default {
       showDismissibleAlert: false,
       formReserva: false,
       reservaExitosa: false,
+      vuelosEncontrados:false,
 
       reserva: {
         id_vue: '',
@@ -126,12 +123,14 @@ export default {
   },
   methods: {
     reservar(id_vue){
-      this.formReserva = true
       this.reserva.id_vue = id_vue
+      this.reservaExitosa=false
+        this.formReserva = false
+      this.vuelosEncontrados=false
     },
     enviarReserva(){
       axios.post(
-      this.url +
+      this.url_reserv +
             "/nuevaReserva?id_reserva=" +
             this.reserva.id_vue+this.reserva.dniReserva+
             "&id_vue="+this.reserva.id_vue+
@@ -145,13 +144,15 @@ export default {
           )
         
         .then(response => {
-          console.log(response)
+          this.reservaExitosa=true
         })
         .catch(e => {
-          console.log(e)
-        });
+          this.reservaExitosa=false
+          this.formReserva=false
+          this.vuelosEncontrados=false
+          this.reservavacia=false
+        })
     },
-
 
     buscarVuelo() {
       axios
@@ -168,11 +169,17 @@ export default {
         )
         .then(response => {
           this.vuelos = response.data
+          this.vuelosEncontrados=true
+          this.formReserva=false
+          this.reservaExitosa=false
+          this.reservavacia=true
         })
             .catch(e => {
-            // Capturamos los errores
-            console.log(2);
-          });
+          this.vuelosEncontrados=false
+          this.reservaExitosa=false
+          this.formReserva=false
+          this.reservavacia=true
+            })
     },
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;

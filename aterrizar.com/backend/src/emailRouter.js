@@ -5,8 +5,6 @@ const router = express.Router()
 const vuelosDAO = require('./vuelosDAO_SQL')
 const funciones = require('./funciones')
 
-
-
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
     host: "smtp.gmail.com",
@@ -19,18 +17,16 @@ var smtpTransport = nodemailer.createTransport({
 router.get('/:id_reserva', async (req, res) => {
     
 try{
-    const mail = await vuelosDAO.getreserva(req.query)
-    const rtoDetalle = await vuelosDAO.detallesreserva(req.query)
-
-
+    const mail = await vuelosDAO.getreserva(req.params.id_reserva)
+    const rtoDetalle = await vuelosDAO.detallesreserva(req.params.id_reserva)
     const info = await smtpTransport.sendMail({
     from: '"Aterrizar.com " <info@aterrizar.com>', // sender address
     to: `${mail[0].mail_pax}`, // list of receivers
     subject: "Detalles de la Reserva", // Subject line
     html: `<b> '${rtoDetalle[0].nombre_pax}' </b>` // html body
-  })
-    res.json(info)}
-  catch (err){
+  })  
+    res.json(info)
+  }catch (err){
       res.json(err)
   }
 })

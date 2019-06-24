@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       name: "List_Reservas",
-      url: "http://127.0.0.1:8090/api/vuelos",
+      url: "http://127.0.0.1:8090/api/reservas",
       reservas: []
     };
   },
