@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 const reservasRouter = require('../src/reservasRouter');
 const arrayMockeadoReservas = require('./mocks/arrayMockeadoReservas.json')

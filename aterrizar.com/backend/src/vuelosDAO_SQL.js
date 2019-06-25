@@ -9,9 +9,9 @@ const getOrig = async()=> {
         return e
     }
 }
-const getDest = async(params)=> {
+const getDest = async()=> {
     try{
-        const aeropuertosDestino = `SELECT * FROM vue_Dest where id_dest='${params.vue_dest}'`
+        const aeropuertosDestino = `SELECT * FROM vue_Dest`
         const result = await knex.raw(aeropuertosDestino)
         return result
     }catch(e){

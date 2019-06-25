@@ -106,6 +106,7 @@ export default {
       formReserva: false,
       reservaExitosa: false,
       vuelosEncontrados:false,
+      vuelonoencontrado:true,
 
       reserva: {
         id_vue: '',

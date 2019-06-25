@@ -33,10 +33,6 @@ function validarPax(query) {
 }
 
 
-
-
-
-
 async function procesarReserva(query) {
     try{
         //Validar Reserva Existente
@@ -72,7 +68,6 @@ async function procesarReserva(query) {
 async function cerrarReservas(query) {
     
     try{
-        console.log("ANTES DE CERRAR")
         var smtpTransport = nodemailer.createTransport({
             service: "gmail",
             host: "smtp.gmail.com",
@@ -91,14 +86,12 @@ async function cerrarReservas(query) {
         })
     return info
     }catch (e){
-        console.log(e)
-        return e//.status(404).Json("Error al cerrar la reserva")
+        return e
     }
 }
 
 async function actualizarVuelo(totpax,id_vue)  {
     try {   
-        console.log("Actualizar vuelo")
         const actuVuelo = await vuelosDAO.updateVuelo(totpax,id_vue)
         return actuVuelo
     } catch (e){ 
@@ -110,5 +103,6 @@ async function actualizarVuelo(totpax,id_vue)  {
 module.exports = {
     validarReserva,
     validarPax,
-    procesarReserva
+    procesarReserva,
+    cerrarReservas
 }
