@@ -15,7 +15,6 @@ router.post('/PAX', async (req, res) => {
          //Agregar PAX     
          const crearPAX = await paxDAO.insertPax(req.query)
          if (crearPAX)throw res.status(401).json("Error al crear Pasajero")
-          // actualizar vuelo
          const cantPax = await reservasDAO.getcantPax(req.query)
          //Cerrar reserva 
          if (reserva[0].cant_pax === cantPax ){const cerrarReserva = await funciones.cerrarReservas(req.query)

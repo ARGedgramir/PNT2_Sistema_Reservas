@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "startDev": "./node_modules/.bin/nodemon ./src/server.js",
-    "test": "node test/testAllEndPoints"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",

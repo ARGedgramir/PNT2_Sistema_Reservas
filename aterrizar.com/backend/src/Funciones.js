@@ -55,7 +55,7 @@ async function procesarReserva(query) {
         const cantPax = await reservasDAO.getcantPax(query)
         //Cerrar reserva 
         const actualizacionVuelo = await actualizarVuelo(query.cant_pax,query.id_vue)
-        if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar reserva"}
+        if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar vuelo"}
         if (query.cant_pax == cantPax ){const cerrarReserva = await cerrarReservas(query)
            if(!cerrarReserva) throw  {status:403,message:"error al cerrar la Reserva"}
             return {status: 200,message:"Reserva Cerrada"}
