@@ -15,7 +15,7 @@ describe("Vuelos", function(){
 
         it("Devuelve los datos correctamente", async function(){
             chai.request(server)
-            .get('/all')
+            .get('/api/vuelos/vuelos')
             .end((err, res)=>{
                 res.should.have.status(200);
                 res.body.shoul.be.a('array');
