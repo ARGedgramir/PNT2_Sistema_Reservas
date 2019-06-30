@@ -18,7 +18,7 @@ const getreserva = async(id_reserva)=> {
         const result = await knex.raw(busquedaReserva)
         return result
     }catch(e){
-        return e    
+        return e;    
     }
 }
 

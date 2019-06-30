@@ -15,6 +15,7 @@ Recibe un identificador de reserva para mostrar su contenido.
 
 ## Parametros
 | Nombre       | Obligatorio | Descripcion                                                    |
+|--------------|-------------|----------------------------------------------------------------|
 |  id_reserva  |     SI      |Identificador de una reserva existente                          |
 
 

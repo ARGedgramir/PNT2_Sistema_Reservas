@@ -1,0 +1,14 @@
+[
+    {
+        "id_reserva": "buemdz1103",
+        "id_vue": "AR2601",
+        "fecha": "22/06/2019",
+        "DNI_Titular": "33445542",
+        "mail_pax": "edgardo.ramirez@gmail.com",
+        "telefono_pax": "11231564787",
+        "cant_pax": 1,
+        "DNI_pax": 33445542,
+        "nombre_pax": "Edgardo",
+        "apellido_pax": "Ramirez"
+    }
+]

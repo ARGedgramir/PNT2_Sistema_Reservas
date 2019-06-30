@@ -1,4 +1,4 @@
 --timeout 50000
 --colors
 --recursive
-./test/vuelo_test.js
+./test/*_test.js

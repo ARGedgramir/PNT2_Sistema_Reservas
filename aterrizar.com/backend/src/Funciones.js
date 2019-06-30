@@ -9,7 +9,7 @@ function validarReserva(query) {
     const schema = { //crea una clase para el objeto reserva
         id_reserva: Joi.string().alphanum().min(1).required(),
         id_vue: Joi.string().alphanum().min(3).required(),
-        fecha: Joi.string().min(2).max(99999999).required(),
+        // fecha: Joi.string().min(2).max(99999999).required(),
         DNI_pax: Joi.string().alphanum().min(2).max(99999999).required(),
         cant_pax:Joi.string().alphanum().min(1).required(),
         telefono_pax: Joi.string().alphanum().min(1).required(),
@@ -18,6 +18,7 @@ function validarReserva(query) {
         apellido_pax: Joi.string().alphanum().min(1).required(),
     }
     const { error } = Joi.validate(query, schema); //las llaves significa agarro un objeto  y lo asigno a una definicion de un objeto.
+    console.log(error);
     return error
 }
 
@@ -39,7 +40,7 @@ async function procesarReserva(query) {
         const busqReserva = await reservasDAO.getreserva(query.id_reserva)
         if (isNaN(busqReserva)) throw { status: 400, descripcion: 'Reserva Existente'}
         //Validar contenido de la Reserva
-        if(validarReserva(query)) 
+        if(!validarReserva(query)) 
         throw{ status: 400, descripcion: 'La Reserva posee un formato invalido o faltan datos'}   
         //Agregar Reserva
         const generarreserva = await reservasDAO.nuevaReserva(query)
@@ -58,10 +59,10 @@ async function procesarReserva(query) {
         if(actualizacionVuelo==null) throw{status:404, Message: "Error al actualizar vuelo"}
         if (query.cant_pax == cantPax ){const cerrarReserva = await cerrarReservas(query)
            if(!cerrarReserva) throw  {status:403,message:"error al cerrar la Reserva"}
-            return {status: 200,message:"Reserva Cerrada"}
+            return {status: 201,message:"Reserva Cerrada"}
         } throw { status: 204, descripcion: 'Pasajero Agregado'}    
     }catch(e){
-        return e  
+        throw e  
     }
 }
 
