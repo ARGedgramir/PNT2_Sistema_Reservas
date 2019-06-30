@@ -1,0 +1,18 @@
+[
+    {
+        "id_vue": "DL102",
+        "aerolinea": "Delta",
+        "orig": "Atlanta",
+        "orig_aeropuerto": "atl-atl",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-eze",
+        "fecha": "2019-08-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true,
+        "duracion": 10,
+        "hora_llegada": "1970-01-01T06:35:00.000Z",
+        "hora_partida": "1970-01-01T20:35:00.000Z",
+        "precio": 1300,
+        "PaxDisp": 150
+    }
+]

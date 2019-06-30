@@ -1,86 +1,134 @@
 [
     {
         "id_vue": "brrio01",
-        "duracion": 3,
-        "hora_partida": "09:00:00",
-        "hora_llegada": "12:00:00",
-        "precio": 450
+        "aerolinea": "LAN",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-eze",
+        "dest": "Rio de Janeiro",
+        "dest_aeropuerto": "bra-gig",
+        "fecha": "2019-06-23T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "brrio02",
-        "duracion": 3,
-        "hora_partida": "15:00:00",
-        "hora_llegada": "18:00:00",
-        "precio": 490
+        "aerolinea": "LAN",
+        "orig": "Rio de Janeiro",
+        "orig_aeropuerto": "bra-gig",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-eze",
+        "fecha": "2019-06-23T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "DL101",
-        "duracion": 10,
-        "hora_partida": "20:35:00",
-        "hora_llegada": "06:35:00",
-        "precio": 1250
+        "aerolinea": "Delta",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-eze",
+        "dest": "Atlanta",
+        "dest_aeropuerto": "atl-atl",
+        "fecha": "2019-08-26T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "DL102",
-        "duracion": 10,
-        "hora_partida": "20:35:00",
-        "hora_llegada": "06:35:00",
-        "precio": 1300
+        "aerolinea": "Delta",
+        "orig": "Atlanta",
+        "orig_aeropuerto": "atl-atl",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-eze",
+        "fecha": "2019-08-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "AR2880",
-        "duracion": 2,
-        "hora_partida": "16:45:00",
-        "hora_llegada": "18:45:00",
-        "precio": 100
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-aep",
+        "dest": "San Salvador de Jujuy",
+        "dest_aeropuerto": "ssj-juy",
+        "fecha": "2019-05-29T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "AR2881",
-        "duracion": 2,
-        "hora_partida": "16:45:00",
-        "hora_llegada": "18:45:00",
-        "precio": 100
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "San Salvador de Jujuy",
+        "orig_aeropuerto": "ssj-juy",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-aep",
+        "fecha": "2019-05-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
+    },
+    {
+        "id_vue": "AR2550",
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-aep",
+        "dest": "Ushuaia",
+        "dest_aeropuerto": "tdf-uha",
+        "fecha": "2019-06-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "AR2551",
-        "duracion": 2,
-        "hora_partida": "21:45:00",
-        "hora_llegada": "23:45:00",
-        "precio": 150
-    },
-    {
-        "id_vue": "AR2551",
-        "duracion": 2,
-        "hora_partida": "21:45:00",
-        "hora_llegada": "23:45:00",
-        "precio": 150
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "Ushuaia",
+        "orig_aeropuerto": "tdf-uha",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-aep",
+        "fecha": "2019-06-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "AR2600",
-        "duracion": 1,
-        "hora_partida": "17:45:00",
-        "hora_llegada": "18:45:00",
-        "precio": 50
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-aep",
+        "dest": "Mendoza",
+        "dest_aeropuerto": "mdz-mdz",
+        "fecha": "2019-07-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "AR2601",
-        "duracion": 1,
-        "hora_partida": "19:45:00",
-        "hora_llegada": "20:45:00",
-        "precio": 50
+        "aerolinea": "Aerolineas Argentinas",
+        "orig": "Mendoza",
+        "orig_aeropuerto": "mdz-mdz",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-aep",
+        "fecha": "2019-07-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "FL143",
-        "duracion": 1,
-        "hora_partida": "14:30:00",
-        "hora_llegada": "15:30:00",
-        "precio": 10
+        "aerolinea": "Flybondi",
+        "orig": "Buenos Aires",
+        "orig_aeropuerto": "bue-aep",
+        "dest": "Mendoza",
+        "dest_aeropuerto": "mdz-mdz",
+        "fecha": "2019-07-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     },
     {
         "id_vue": "FL144",
-        "duracion": 2,
-        "hora_partida": "16:30:00",
-        "hora_llegada": "17:30:00",
-        "precio": 12
+        "aerolinea": "Flybondi",
+        "orig": "Mendoza",
+        "orig_aeropuerto": "mdz-mdz",
+        "dest": "Buenos Aires",
+        "dest_aeropuerto": "bue-aep",
+        "fecha": "2019-07-30T00:00:00.000Z",
+        "escala_aeropuerto": null,
+        "disponible": true
     }
 ]

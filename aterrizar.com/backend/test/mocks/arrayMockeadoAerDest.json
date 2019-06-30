@@ -1,0 +1,12 @@
+[
+    {
+        "id_dest": "COR-COR",
+        "nombre_dest": "Cordoba",
+        "aeropuerto_dest": "Aeropuerto Int. Ing. Ambrosio Taravella"
+    },
+    {
+        "id_dest": "BUE-EZE",
+        "nombre_dest": "Buenos Aires",
+        "aeropuerto_dest": "Aeropuerto Inter. Ministro Pistarini"
+    }
+]

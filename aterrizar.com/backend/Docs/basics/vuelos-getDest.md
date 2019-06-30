@@ -1,5 +1,5 @@
 # Vuelos
-- [GET api/vuelos/dest](.basics/vuelos-getDest.md))
+- [GET api/vuelos/dest](.basics/vuelos-getDest.md)
 
 # GET api/vuelos/dest
 Obtener una lista de aeropuertos de destino.

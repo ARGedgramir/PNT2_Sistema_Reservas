@@ -15,6 +15,7 @@ Obtener una lista de vuelos disponibles para una busqueda especifica.
 
 ## Parametros
 | Nombre   | Obligatorio | Descripcion                                              |
+|----------|-------------|----------------------------------------------------------|
 | fecha    |     SI      |Fecha del vuelo especifico                                |
 | destino  |     SI      |Ciudad de destino para un vuelo especifico                |
 | origen   |     SI      |Ciudad de origen para un vuelo especifico                 |

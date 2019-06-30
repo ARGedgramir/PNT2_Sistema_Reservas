@@ -19,8 +19,7 @@ app.use('/api/pax', paxRouter)
 
 
 const puerto = 8090
-
-app.listen(puerto, () => {
+module.exports = app.listen(puerto, () => {
     console.log(`servidor inicializado en puerto ${puerto}`)
 })
 

@@ -28,7 +28,7 @@ router.get('/Dest/', async (req, res) => {
     }
 })
 
-router.get('/', async (req, res) => {
+router.get('', async (req, res) => {
     console.log(`GETTING: ${baseURI}${req.url}`)
     console.log("Esto es / getvuelo")
     try{
@@ -37,7 +37,7 @@ router.get('/', async (req, res) => {
         const resultado = await vuelosDAO.getvuelo(req.query)
         res.status(200).json(resultado) 
     }catch(e){
-        return e
+        res.status(404).json(e);
     }
 })
 

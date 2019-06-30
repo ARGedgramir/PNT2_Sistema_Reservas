@@ -13,7 +13,7 @@ router.post('/nuevaReserva', async (req, res) => {
     } catch (e) {
         res.status(e.status).json(e)
     }
-})
+}) 
 
 router.get('/Mostrarreservas/all', async (req, res) => {
     try {   
@@ -36,6 +36,7 @@ router.get('/Mostrarreservas/:id_reserva', async (req, res) => {
         res.status(200).json(detalleReserva)
     } catch (err) {
         res.status(err.status).json(err)
+   
     }
 })
 
